@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <flow name="CustomFilterFlow1" doc:name="CustomFilterFlow1">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="4343" path="customFilter" doc:name="HTTP"/>
+        <echo-component doc:name="Configuer the Custom Filter"/>
+        <custom-filter class="com.mule.filter.CustomMuleFilter" doc:name="Custom"/>
+    </flow>
+</mule>

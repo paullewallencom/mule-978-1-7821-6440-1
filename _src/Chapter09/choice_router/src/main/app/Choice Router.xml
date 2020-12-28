@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <flow name="Choice_RouterFlow1" doc:name="Choice_RouterFlow1">
+        <file:inbound-endpoint path="C:\Documents and Settings\azazdesai\Desktop\Input" responseTimeout="10000" doc:name="File"/>
+        <choice doc:name="Choice">
+            <when expression="#[message.inboundProperties['originalFilename'].endsWith('.ppt')]">
+                <processor-chain>
+                    <file:outbound-endpoint path="C:\Documents and Settings\azazdesai\Desktop\Output\PPT" responseTimeout="10000" doc:name="Only PPT File"/>
+                </processor-chain>
+            </when>
+            <when expression="#[message.inboundProperties['originalFilename'].endsWith('.txt')]">
+                <processor-chain>
+                    <file:outbound-endpoint path="C:\Documents and Settings\azazdesai\Desktop\Output\Text" responseTimeout="10000" doc:name="Only Text File"/>
+                </processor-chain>
+            </when>
+            <when expression="#[message.inboundProperties['originalFilename'].endsWith('.zip')]">
+                <processor-chain>
+                    <file:outbound-endpoint responseTimeout="10000" doc:name="OnlyZIP File" path="C:\Documents and Settings\azazdesai\Desktop\Output\ZIP"/>
+                </processor-chain>
+            </when>
+            <otherwise>
+                <processor-chain>
+                    <logger level="INFO" doc:name="Logger" message="Invalid File Type"/>
+                </processor-chain>
+            </otherwise>
+        </choice>
+    </flow>
+</mule>

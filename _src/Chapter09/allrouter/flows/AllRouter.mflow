@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="AllRouter">
+    <flow SubFlow="false" name="AllRouterFlow1" entity-id="41776d00-e283-44b2-9cf2-5e1b5bbc02e5">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property value="1" name="auxiliary;index"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+        </properties>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#1">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="File" entity-id="File#1">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="C:\Documents and Settings\azazdesai\Desktop\Input" name="path"/>
+                    <property name="outputPattern"/>
+                    <property name="moveToPattern"/>
+                    <property name="moveToDirectory"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="pollingFrequency"/>
+                    <property name="fileAge"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="address"/>
+                    <property value="10000" name="responseTimeout"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="comparator"/>
+                    <property name="reverseOrder"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                </properties>
+            </endpoint>
+            <pattern type="org.mule.tooling.ui.modules.core.pattern.echo" name="FileTransfer" entity-id="Echo#1">
+                <properties>
+                    <property value="3" name="auxiliary;index"/>
+                    <property value="3" name="auxiliary;index"/>
+                    <property value="3" name="auxiliary;index"/>
+                    <property value="3" name="auxiliary;index"/>
+                </properties>
+            </pattern>
+            <splitter index="4" type="org.mule.tooling.ui.modules.core.pattern.all" name="All" entity-id="All#1">
+                <properties>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                    <property value="4" name=";INDEX"/>
+                </properties>
+                <pattern type="org.mule.tooling.ui.modules.core.pattern.all" name="All" entity-id="All#2">
+                    <properties>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                        <property value="4" name=";INDEX"/>
+                    </properties>
+                </pattern>
+                <compartment entity-id="compartment#1">
+                    <lane isChoiceOtherwiseLane="false" index="5" hadOnlyOneElement="false" entity-id="08a8e824-ae46-4d2c-8ed1-26aa4c1692b0">
+                        <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="File" entity-id="File#2">
+                            <properties>
+<property value="true" name="auxiliary;erased;mimeType"/>
+<property value="false" name="disableTransportTransformer"/>
+<property value="one-way" name="exchange-pattern"/>
+<property value="" name="ref"/>
+<property value="" name="transformer-refs"/>
+<property value="" name="address"/>
+<property value="true" name="auxiliary;erased;encoding"/>
+<property value="C:\Documents and Settings\azazdesai\Desktop\Output1" name="path"/>
+<property value="" name="encoding"/>
+<property value="" name="outputPattern"/>
+<property value="10000" name="responseTimeout"/>
+<property value="" name="mimeType"/>
+<property value="" name="connector-ref"/>
+<property value="6" name="auxiliary;index"/>
+<property name="updated"/>
+                            </properties>
+                            <description></description>
+                        </endpoint>
+                    </lane>
+                    <lane isChoiceOtherwiseLane="false" index="9" hadOnlyOneElement="false" entity-id="4b9212a2-4cd4-4bed-9211-ff9807999c4b">
+                        <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="File" entity-id="File#4">
+                            <properties>
+<property value="true" name="auxiliary;erased;mimeType"/>
+<property value="false" name="disableTransportTransformer"/>
+<property value="one-way" name="exchange-pattern"/>
+<property value="" name="ref"/>
+<property value="" name="transformer-refs"/>
+<property value="" name="address"/>
+<property value="true" name="auxiliary;erased;encoding"/>
+<property value="C:\Documents and Settings\azazdesai\Desktop\Output2" name="path"/>
+<property value="" name="encoding"/>
+<property value="" name="outputPattern"/>
+<property value="10000" name="responseTimeout"/>
+<property value="" name="mimeType"/>
+<property value="" name="connector-ref"/>
+<property value="10" name="auxiliary;index"/>
+<property name="updated"/>
+                            </properties>
+                            <description></description>
+                        </endpoint>
+                    </lane>
+                    <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="0fac354d-e079-4ec0-b362-996d6a6b2f23">
+                        <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="File" entity-id="File#3">
+                            <properties>
+<property value="true" name="auxiliary;erased;mimeType"/>
+<property value="false" name="disableTransportTransformer"/>
+<property value="one-way" name="exchange-pattern"/>
+<property value="" name="ref"/>
+<property value="" name="transformer-refs"/>
+<property value="" name="address"/>
+<property value="true" name="auxiliary;erased;encoding"/>
+<property value="C:\Documents and Settings\azazdesai\Desktop\Output3" name="path"/>
+<property value="" name="encoding"/>
+<property value="" name="outputPattern"/>
+<property value="10000" name="responseTimeout"/>
+<property value="" name="mimeType"/>
+<property value="" name="connector-ref"/>
+<property name="updated"/>
+                            </properties>
+                            <description></description>
+                        </endpoint>
+                    </lane>
+                    <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="f5faf3a6-73fd-4028-8115-d8d97f157518">
+                        <pattern type="http://www.mulesoft.org/schema/mule/core/logger" name="Logger" entity-id="Logger#1">
+                            <properties>
+<property value="All File transfer Successfully" name="message"/>
+<property value="INFO" name="level"/>
+<property name="category"/>
+<property value="12" name="auxiliary;moved-from"/>
+<property name="auxiliary;moved-from"/>
+<property name="auxiliary;moved-from"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                </compartment>
+            </splitter>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

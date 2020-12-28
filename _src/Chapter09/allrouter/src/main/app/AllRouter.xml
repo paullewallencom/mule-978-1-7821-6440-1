@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" version="CE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <flow name="AllRouterFlow1" doc:name="AllRouterFlow1">
+        <file:inbound-endpoint path="C:\Documents and Settings\azazdesai\Desktop\Input" responseTimeout="10000" doc:name="File"/>
+        <echo-component doc:name="FileTransfer"/>
+        <all doc:name="All">
+            <processor-chain>
+                <file:outbound-endpoint path="C:\Documents and Settings\azazdesai\Desktop\Output1" responseTimeout="10000" doc:name="File"/>
+            </processor-chain>
+            <processor-chain>
+                <file:outbound-endpoint path="C:\Documents and Settings\azazdesai\Desktop\Output2" responseTimeout="10000" doc:name="File"/>
+            </processor-chain>
+            <processor-chain>
+                <file:outbound-endpoint path="C:\Documents and Settings\azazdesai\Desktop\Output3" responseTimeout="10000" doc:name="File"/>
+            </processor-chain>
+            <processor-chain>
+                <logger message="All File transfer Successfully" level="INFO" doc:name="Logger"/>
+            </processor-chain>
+        </all>
+    </flow>
+</mule>

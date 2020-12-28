@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:twitter="http://www.mulesoft.org/schema/mule/twitter" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/twitter http://www.mulesoft.org/schema/mule/twitter/current/mule-twitter.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <twitter:config name="Twitter" accessKey="114742097-ifCyZ6ovprbjNh1zQtzh8QlH6YO2JcUXjI3r0GV8" accessSecret="9B3D1B2RLzKt8zflvEerCYV09iy2BaeBtSQtyqtQEY" consumerKey="g5Op3z74OJ6vcnpTeXW6A" consumerSecret="mwjuegMGansmF6WAgVyYQyjw6NFvGSj3gFIXUNo" doc:name="Twitter" />
+    <flow name="twiiterFlow1" doc:name="twiiterFlow1">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8088" doc:name="HTTP"    />
+        <twitter:update-status config-ref="Twitter" status="#[header:INBOUND:mymessage]" doc:name="Twitter"/>
+        <expression-transformer expression="payload.toString()" doc:name="Expression"/>
+    </flow>
+</mule>

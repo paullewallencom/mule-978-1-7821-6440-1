@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph author="azazdesai" created="Thu Mar 14 11:49:26 IST 2013" guiVersion="3.3.0.M2" id="1363242081711" licenseCode="Unlicensed" licenseType="Unknown" modified="Thu Mar 14 11:49:26 IST 2013" modifiedBy="azazdesai" name="Json to data" preview-file="C:/Documents and Settings/azazdesai/Desktop/Input/Employee.json" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _type="Output" id="Metadata1">
+<Record fieldDelimiter="￿" name="Book1" recordDelimiter="\r\n" type="delimited">
+<Field eofAsDelimiter="true" label="" name="_" type="string"/>
+</Record>
+</Metadata>
+<Metadata __sourcePath="{}/array" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _type="Input" id="Metadata0">
+<Record fieldDelimiter="|" name="__singleDimensionalCollection_1" recordDelimiter="&#10;" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" label="__id" name="__id" type="string"/>
+<Field __sourcePath="{}/array/empid" containerType="" label="empid" name="empid" type="string"/>
+<Field __sourcePath="{}/array/empname" containerType="" label="empname" name="empname" type="string"/>
+<Field __sourcePath="{}/array/empage" containerType="" label="empage" name="empage" type="string"/>
+<Field __sourcePath="{}/array/empdesignation" containerType="" label="empdesignation" name="empdesignation" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:outputPayload" guiHeight="0" guiName="CSV WRITER" guiWidth="0" guiX="680" guiY="20" id="DATA_WRITER0" quotedStrings="true" type="DATA_WRITER">
+<attr name="_data_format"><![CDATA[CSV]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiHeight="0" guiName="JSON READER" guiWidth="0" guiX="20" guiY="20" id="JSON_READER0" type="JSON_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context xpath="/root">
+  <Context outPort="0" sequenceField="__id" xpath="array">
+    <Mapping cloverField="empid" trim="true" xpath="empid"/>
+    <Mapping cloverField="empname" trim="true" xpath="empname"/>
+    <Mapping cloverField="empage" trim="true" xpath="empage"/>
+    <Mapping cloverField="empdesignation" trim="true" xpath="empdesignation"/>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[C:\Documents and Settings\azazdesai\Desktop\Input\Employee.json]]></attr>
+</Node>
+<Node enabled="enabled" guiHeight="0" guiName="array_to_Book1" guiWidth="0" guiX="240" guiY="20" id="REFORMAT0" type="REFORMAT">
+<attr name="transform"><![CDATA[//#CTL2
+
+// Transforms input record into output record.
+function integer transform() {
+	return ALL;
+}
+
+// Called during component initialization.
+// function boolean init() {}
+
+// Called during each graph run before the transform is executed. May be used to allocate and initialize resources
+// required by the transform. All resources allocated within this method should be released
+// by the postExecute() method.
+// function void preExecute() {}
+
+// Called only if transform() throws an exception.
+// function integer transformOnError(string errorMessage, string stackTrace) {}
+
+// Called during each graph run after the entire transform was executed. Should be used to free any resources
+// allocated within the preExecute() method.
+// function void postExecute() {}
+
+// Called to return a user-defined error message when an error occurs.
+// function string getMessage() {}
+]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="JSON_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="Metadata0" outPort="Port 0 (out)" toNode="REFORMAT0:0"/>
+<Edge debugMode="true" fromNode="REFORMAT0:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="Metadata1" outPort="Port 0 (out)" toNode="DATA_WRITER0:0"/>
+</Phase>
+</Graph>

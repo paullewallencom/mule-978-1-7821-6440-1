@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd 
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <file:connector name="outputConnector" streaming="false" doc:name="File"/>
+    <data-mapper:config name="pojo_2_csv" transformationGraphPath="pojo_2_csv_1.grf" doc:name="pojo_2_csv"/>
+    <flow name="datamapper-input-arguments-exampleFlow2" doc:name="datamapper-input-arguments-exampleFlow2">
+        <http:inbound-endpoint exchange-pattern="one-way" host="localhost" port="8081" doc:name="HTTP"/>
+        <vm:outbound-endpoint exchange-pattern="one-way" path="/input" doc:name="VM"/>
+    </flow>
+    <flow name="datamapper-input-arguments-exampleFlow1" doc:name="datamapper-input-arguments-exampleFlow1">
+        <vm:inbound-endpoint exchange-pattern="one-way" path="/input" doc:name="Input"/>
+        <data-mapper:transform config-ref="pojo_2_csv" doc:name="POJO to CSV">
+            <data-mapper:input-arguments>
+                <data-mapper:input-argument key="genratedCode">#[System.currentTimeMillis()]</data-mapper:input-argument>
+            </data-mapper:input-arguments>
+        </data-mapper:transform>
+        <file:outbound-endpoint path="C:\Documents and Settings\azazdesai\MuleStudio\workspace\datamapper\src\main\resources" outputPattern="output-#[function:datestamp].csv" responseTimeout="10000" connector-ref="outputConnector" doc:name="Output"/>
+    </flow>
+</mule>

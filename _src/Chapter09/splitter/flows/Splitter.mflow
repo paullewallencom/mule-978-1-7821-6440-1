@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="Splitter">
+    <flow SubFlow="false" name="SplitterFlow1" entity-id="a4a888f3-5c88-4585-843a-2ad18268990f">
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="a7796c7c-c725-4a38-81ba-5f637d4f141b">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="File" entity-id="ae9d5a34-475b-4dd7-9632-34bb236e489f">
+                <properties>
+                    <property value="true" name="auxiliary;erased;mimeType"/>
+                    <property value="false" name="reverseOrder"/>
+                    <property value="" name="moveToPattern"/>
+                    <property value="1000" name="pollingFrequency"/>
+                    <property value="" name="comparator"/>
+                    <property value="false" name="disableTransportTransformer"/>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="" name="ref"/>
+                    <property value="" name="transformer-refs"/>
+                    <property value="" name="moveToDirectory"/>
+                    <property value="" name="address"/>
+                    <property value="500" name="fileAge"/>
+                    <property value="true" name="auxiliary;erased;encoding"/>
+                    <property value="D:\OrdersData\Input" name="path"/>
+                    <property value="" name="encoding"/>
+                    <property value="10000" name="responseTimeout"/>
+                    <property value="" name="mimeType"/>
+                    <property value="" name="connector-ref"/>
+                    <property name="updated"/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/splitter" name="Splitter" entity-id="a15d615c-dc3f-4a83-80b3-6ad68a0195c0">
+                <properties>
+                    <property value="#[xpath:shiporder/shipto/city]" name="expression"/>
+                    <property value="IF_NOT_SET" name="enableCorrelation"/>
+                    <property name="updated"/>
+                </properties>
+                <description></description>
+            </pattern>
+            <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="File" entity-id="c2acf4ed-bdce-4bbc-af51-23438c7e4374">
+                <properties>
+                    <property value="true" name="auxiliary;erased;mimeType"/>
+                    <property value="false" name="disableTransportTransformer"/>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="" name="ref"/>
+                    <property value="" name="transformer-refs"/>
+                    <property value="" name="address"/>
+                    <property value="true" name="auxiliary;erased;encoding"/>
+                    <property value="C:\Documents and Settings\azazdesai\Desktop\Output" name="path"/>
+                    <property value="" name="encoding"/>
+                    <property value="" name="outputPattern"/>
+                    <property value="10000" name="responseTimeout"/>
+                    <property value="" name="mimeType"/>
+                    <property value="" name="connector-ref"/>
+                    <property name="updated"/>
+                </properties>
+                <description></description>
+            </endpoint>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:jdbc="http://www.mulesoft.org/schema/mule/jdbc" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd 
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd 
+http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/current/mule-jdbc.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <jdbc:connector name="Json-file1" dataSource-ref="PostgreSQL_Data_Source" validateConnections="true" queryTimeout="-1" pollingFrequency="0" doc:name="Database">
+        <jdbc:query key="InsertRecord" value="INSERT INTO tblemployee(empid,empname,empage,empdesignation) VALUES (#[message.payload.empid],#[message.payload.empname],#[message.payload.empage],#[message.payload.empdesignation])"/>
+    </jdbc:connector>
+    <jdbc:postgresql-data-source name="PostgreSQL_Data_Source" user="postgres" password="root" url="jdbc:postgresql://localhost:5432/Test" transactionIsolation="UNSPECIFIED" doc:name="PostgreSQL Data Source"/>
+    <flow name="JsonFlow1" doc:name="JsonFlow1">
+        <file:inbound-endpoint path="C:\Documents and Settings\azazdesai\Desktop\Input" responseTimeout="10000" doc:name="File"/>
+        <json:json-to-object-transformer returnClass="java.util.List" doc:name="JSON to Object"/>
+        <collection-splitter doc:name="Collection Splitter"/>
+        <jdbc:outbound-endpoint exchange-pattern="one-way" queryKey="InsertRecord" queryTimeout="-1" connector-ref="Json-file1" doc:name="Database"/>
+    </flow>
+</mule>

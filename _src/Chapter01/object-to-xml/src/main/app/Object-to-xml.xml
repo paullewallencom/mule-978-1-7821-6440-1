@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:quartz="http://www.mulesoft.org/schema/mule/quartz" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:jdbc="http://www.mulesoft.org/schema/mule/jdbc" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd 
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd 
+http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/current/mule-jdbc.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <jdbc:postgresql-data-source name="PostgreSQL_Data_Source" user="postgres" password="root" url="jdbc:postgresql://localhost:5432/Test" transactionIsolation="UNSPECIFIED" doc:name="PostgreSQL Data Source"/>
+    <jdbc:connector name="JDBC-Connection" dataSource-ref="PostgreSQL_Data_Source" validateConnections="true" queryTimeout="-1" pollingFrequency="0" doc:name="Database">
+        <jdbc:query key="UserList" value="SELECT * FROM tblemployee WHERE empid ='01' "/>
+    </jdbc:connector>
+    <flow name="Object-to-xmlFlow1" doc:name="Object-to-xmlFlow1">
+        <jdbc:inbound-endpoint queryKey="UserList" queryTimeout="-1" pollingFrequency="1000" connector-ref="JDBC-Connection" doc:name="Database"/>
+        <mulexml:object-to-xml-transformer doc:name="Object to XML"/>
+        <file:outbound-endpoint path="C:\Documents and Settings\azazdesai\Desktop\Input" outputPattern="Database#[function:datestamp].xml" responseTimeout="10000" doc:name="File"/>
+    </flow>
+</mule>

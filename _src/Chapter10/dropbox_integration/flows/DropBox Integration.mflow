@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="DropBox Integration">
+    <global-element type="http://www.mulesoft.org/schema/mule/dropbox/config" name="Dropbox" entity-id="Dropbox#1">
+        <properties>
+            <property value="Dropbox" name="name"/>
+            <property value="1" name="auxiliary;index"/>
+            <property name="contentServer"/>
+            <property name="server"/>
+            <property value="8081" name="port"/>
+            <property value="ppr2sh8h1is39ks" name="appKey"/>
+            <property value="h3v5hzqz9x6lula" name="appSecret"/>
+            <property name="debug"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+            <property-collection name="@http://www.mulesoft.org/schema/mule/dropbox/oauth-callback-config;0">
+                <property value="localhost" name="domain"/>
+                <property value="8081" name="remotePort"/>
+                <property value="8081" name="localPort"/>
+                <property value="2" name="auxiliary;wrapIn"/>
+                <property value="2" name="auxiliary;index"/>
+                <property value="true" name="isProcessed$$$$"/>
+            </property-collection>
+        </properties>
+    </global-element>
+    <flow SubFlow="false" name="Processor" entity-id="3293fbe0-23fb-4c8c-854a-3268fb4915b1">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property value="3" name="auxiliary;index"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+        </properties>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#1">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="HTTP#1">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property name="httpLabel"/>
+                    <property value="localhost" name="host"/>
+                    <property value="8081" name="port"/>
+                    <property value="in" name="path"/>
+                    <property name="method"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property name="address"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="followRedirects"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property name="user"/>
+                    <property name="password"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property name="contentType"/>
+                    <property name="keep-alive"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="4" name="auxiliary;index"/>
+                </properties>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/http/body-to-parameter-map-transformer" name="Body to Parameter Map" entity-id="Body to Parameter Map#1">
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="ignoreBadInput"/>
+                    <property name="encoding"/>
+                    <property value="5" name="auxiliary;index"/>
+                    <property name="mimeType"/>
+                    <property value="5" name="auxiliary;index"/>
+                    <property value="5" name="auxiliary;index"/>
+                    <property value="5" name="auxiliary;index"/>
+                </properties>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/logger" name="Logger" entity-id="Logger#1">
+                <properties>
+                    <property value="MAP REQUEST: #[payload]" name="message"/>
+                    <property value="INFO" name="level"/>
+                    <property name="category"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property value="6" name="auxiliary;index"/>
+                </properties>
+            </pattern>
+            <splitter index="7" type="org.mule.tooling.ui.modules.core.pattern.cbr" name="Choice" entity-id="Choice#1">
+                <properties>
+                    <property name="updated"/>
+                    <property value="7" name=";INDEX"/>
+                    <property value="7" name=";INDEX"/>
+                    <property value="7" name=";INDEX"/>
+                    <property value="7" name=";INDEX"/>
+                    <property-collection name="6bd51f92-8c1c-4aad-a55f-b6506d895d66">
+                        <property value="#[payload.get('op') == 'createF']" name="choice.expression"/>
+                        <property-collection name="choice.attributes">
+                            <property value="#[payload.get('op') == 'createF']" name="expression"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="32309531-80b7-4a85-8173-d846b2bacdc5">
+                        <property value="#[payload.get('op') == 'delete']" name="choice.expression"/>
+                        <property-collection name="choice.attributes">
+                            <property value="#[payload.get('op') == 'delete']" name="expression"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="9030a215-b4b8-42c8-9af6-648f55fc4f8e">
+                        <property value="true" name="choice.otherwise"/>
+                        <property value="" name="choice.expression"/>
+                        <property-collection name="choice.attributes"/>
+                    </property-collection>
+                </properties>
+                <description></description>
+                <pattern type="org.mule.tooling.ui.modules.core.pattern.cbr" name="Choice" entity-id="Choice#2">
+                    <properties>
+                        <property name="updated"/>
+                        <property value="7" name=";INDEX"/>
+                        <property value="7" name=";INDEX"/>
+                        <property value="7" name=";INDEX"/>
+                        <property value="7" name=";INDEX"/>
+                        <property-collection name="6bd51f92-8c1c-4aad-a55f-b6506d895d66">
+                            <property value="#[payload.get('op') == 'createF']" name="choice.expression"/>
+                            <property-collection name="choice.attributes">
+<property value="#[payload.get('op') == 'createF']" name="expression"/>
+                            </property-collection>
+                        </property-collection>
+                        <property-collection name="32309531-80b7-4a85-8173-d846b2bacdc5">
+                            <property value="#[payload.get('op') == 'delete']" name="choice.expression"/>
+                            <property-collection name="choice.attributes">
+<property value="#[payload.get('op') == 'delete']" name="expression"/>
+                            </property-collection>
+                        </property-collection>
+                        <property-collection name="9030a215-b4b8-42c8-9af6-648f55fc4f8e">
+                            <property value="true" name="choice.otherwise"/>
+                            <property value="" name="choice.expression"/>
+                            <property-collection name="choice.attributes"/>
+                        </property-collection>
+                    </properties>
+                    <description></description>
+                </pattern>
+                <compartment entity-id="compartment#1">
+                    <lane isChoiceOtherwiseLane="false" index="9" hadOnlyOneElement="false" entity-id="6bd51f92-8c1c-4aad-a55f-b6506d895d66">
+                        <pattern type="http://www.mulesoft.org/schema/mule/dropbox/dropbox-connector" name="Create Folder" entity-id="Dropbox#2">
+                            <properties>
+<property value="Dropbox" name="config-ref"/>
+<property value="http://www.mulesoft.org/schema/mule/dropbox/create-folder" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+<property value="Dropbox" name="config-ref"/>
+<property value="10" name="auxiliary;index"/>
+<property value="#[payload['dropboxPath']]" name="path"/>
+<property value="10" name="auxiliary;index"/>
+<property value="10" name="auxiliary;index"/>
+<property value="10" name="auxiliary;index"/>
+<property value="10" name="auxiliary;index"/>
+<property value="10" name="auxiliary;index"/>
+<property value="10" name="auxiliary;index"/>
+<property value="10" name="auxiliary;index"/>
+                            </properties>
+                        </pattern>
+                        <pattern type="http://www.mulesoft.org/schema/mule/json/object-to-json-transformer" name="Object to JSON" entity-id="Object to JSON#1">
+                            <properties>
+<property name="returnClass"/>
+<property name="ignoreBadInput"/>
+<property name="encoding"/>
+<property value="11" name="auxiliary;index"/>
+<property name="mimeType"/>
+<property value="11" name="auxiliary;index"/>
+<property value="11" name="auxiliary;index"/>
+<property name="mapper-ref"/>
+<property name="sourceClass"/>
+<property value="11" name="auxiliary;index"/>
+<property value="11" name="auxiliary;index"/>
+<property value="11" name="auxiliary;index"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane isChoiceOtherwiseLane="false" index="13" hadOnlyOneElement="false" entity-id="32309531-80b7-4a85-8173-d846b2bacdc5">
+                        <pattern type="http://www.mulesoft.org/schema/mule/dropbox/dropbox-connector" name="Delete" entity-id="Dropbox#3">
+                            <properties>
+<property value="Dropbox" name="config-ref"/>
+<property value="http://www.mulesoft.org/schema/mule/dropbox/delete" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+<property value="Dropbox" name="config-ref"/>
+<property value="14" name="auxiliary;index"/>
+<property value="#[payload['dropboxPath']]" name="path"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+                            </properties>
+                        </pattern>
+                        <pattern type="http://www.mulesoft.org/schema/mule/json/object-to-json-transformer" name="Object to JSON" entity-id="Object to JSON#2">
+                            <properties>
+<property name="returnClass"/>
+<property name="ignoreBadInput"/>
+<property name="encoding"/>
+<property value="15" name="auxiliary;index"/>
+<property name="mimeType"/>
+<property value="15" name="auxiliary;index"/>
+<property value="15" name="auxiliary;index"/>
+<property name="mapper-ref"/>
+<property name="sourceClass"/>
+<property value="15" name="auxiliary;index"/>
+<property value="15" name="auxiliary;index"/>
+<property value="15" name="auxiliary;index"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane isChoiceOtherwiseLane="true" index="17" hadOnlyOneElement="false" entity-id="9030a215-b4b8-42c8-9af6-648f55fc4f8e">
+                        <pattern type="http://www.mulesoft.org/schema/mule/core/logger" name="Logger" entity-id="Logger#2">
+                            <properties>
+<property value="INVALID OPERATION" name="message"/>
+<property value="INFO" name="level"/>
+<property name="category"/>
+<property value="18" name="auxiliary;index"/>
+<property value="18" name="auxiliary;index"/>
+<property value="18" name="auxiliary;index"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                </compartment>
+            </splitter>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/logger" name="Logger" entity-id="Logger#3">
+                <properties>
+                    <property value="Final Payload is #[payload]" name="message"/>
+                    <property value="INFO" name="level"/>
+                    <property name="category"/>
+                    <property value="19" name="auxiliary;index"/>
+                    <property value="19" name="auxiliary;index"/>
+                    <property value="19" name="auxiliary;index"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="Authorize" entity-id="94d40198-c64c-4779-a686-7c98df4ba3fa">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property value="20" name="auxiliary;index"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property value="20" name="auxiliary;index"/>
+            <property value="20" name="auxiliary;index"/>
+            <property value="20" name="auxiliary;index"/>
+        </properties>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#2">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="HTTP#2">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property name="httpLabel"/>
+                    <property value="localhost" name="host"/>
+                    <property value="8081" name="port"/>
+                    <property value="auth" name="path"/>
+                    <property name="method"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property name="address"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="followRedirects"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property name="user"/>
+                    <property name="password"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property name="contentType"/>
+                    <property name="keep-alive"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property value="21" name="auxiliary;index"/>
+                    <property value="21" name="auxiliary;index"/>
+                </properties>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/dropbox/dropbox-connector" name="Authorize" entity-id="Dropbox#4">
+                <properties>
+                    <property value="Dropbox" name="config-ref"/>
+                    <property value="http://www.mulesoft.org/schema/mule/dropbox/authorize" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="Dropbox" name="config-ref"/>
+                    <property value="22" name="auxiliary;index"/>
+                    <property value="22" name="auxiliary;index"/>
+                    <property value="22" name="auxiliary;index"/>
+                    <property value="22" name="auxiliary;index"/>
+                    <property value="22" name="auxiliary;index"/>
+                    <property value="22" name="auxiliary;index"/>
+                    <property value="22" name="auxiliary;index"/>
+                    <property value="22" name="auxiliary;index"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="HTML" entity-id="b490cb78-4930-444f-96c3-a709e3c44ef0">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property value="23" name="auxiliary;index"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property value="23" name="auxiliary;index"/>
+            <property value="23" name="auxiliary;index"/>
+            <property value="23" name="auxiliary;index"/>
+        </properties>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#3">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="HTTP#3">
+                <properties>
+                    <property value="true" name="auxiliary;erased;contentType"/>
+                    <property value="8081" name="port"/>
+                    <property value="true" name="auxiliary;erased;mimeType"/>
+                    <property value="localhost" name="host"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="false" name="keep-alive"/>
+                    <property value="" name="contentType"/>
+                    <property value="false" name="disableTransportTransformer"/>
+                    <property value="" name="password"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="" name="ref"/>
+                    <property value="" name="transformer-refs"/>
+                    <property value="" name="httpLabel"/>
+                    <property value="" name="address"/>
+                    <property value="true" name="auxiliary;erased;encoding"/>
+                    <property value="home" name="path"/>
+                    <property value="" name="encoding"/>
+                    <property value="" name="responseTransformer-refs"/>
+                    <property value="" name="user"/>
+                    <property value="" name="responseTimeout"/>
+                    <property value="" name="mimeType"/>
+                    <property value="" name="connector-ref"/>
+                    <property value="24" name="auxiliary;index"/>
+                    <property name="updated"/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <unknown index="25" description="false" entity-id="unknown#1">
+                <content>&lt;http:static-resource-handler xmlns:http=&quot;http://www.mulesoft.org/schema/mule/http&quot; resourceBase=&quot;${app.home}/docroot&quot; defaultFile=&quot;home.html&quot;/&gt;</content>
+            </unknown>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

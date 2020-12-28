@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <flow name="LogicFilterFlow1" doc:name="LogicFilterFlow1">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="7676" doc:name="HTTP"/>
+        <or-filter doc:name="Or">
+            <wildcard-filter pattern="/Hello*" caseSensitive="true"/>
+            <wildcard-filter pattern="/Hi*" caseSensitive="true"/>
+        </or-filter>
+        <component class="com.org.Greeting" doc:name="Java"/>
+    </flow>
+</mule>

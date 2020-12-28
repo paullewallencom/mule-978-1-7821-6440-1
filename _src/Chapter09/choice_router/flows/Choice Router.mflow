@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="Choice Router">
+    <flow SubFlow="false" name="Choice_RouterFlow1" entity-id="09124a69-0202-47f6-9fce-eeda61efcd91">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property value="1" name="auxiliary;index"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+        </properties>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#1">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="File" entity-id="File#1">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="C:\Documents and Settings\azazdesai\Desktop\Input" name="path"/>
+                    <property name="outputPattern"/>
+                    <property name="moveToPattern"/>
+                    <property name="moveToDirectory"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="pollingFrequency"/>
+                    <property name="fileAge"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="address"/>
+                    <property value="10000" name="responseTimeout"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="comparator"/>
+                    <property name="reverseOrder"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                    <property value="2" name="auxiliary;index"/>
+                </properties>
+            </endpoint>
+            <splitter index="3" type="org.mule.tooling.ui.modules.core.pattern.cbr" name="Choice" entity-id="Choice#1">
+                <properties>
+                    <property name="updated"/>
+                    <property value="3" name=";INDEX"/>
+                    <property-collection name="4f8e1f08-ffff-4e05-b593-78fe53170599">
+                        <property value="#[message.inboundProperties['originalFilename'].endsWith('.pptx')]" name="choice.expression"/>
+                        <property-collection name="choice.attributes">
+                            <property value="#[message.inboundProperties['originalFilename'].endsWith('.ppt')]" name="expression"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="b772481a-76a5-4b46-b83e-998aeeb6da76">
+                        <property value="true" name="choice.otherwise"/>
+                        <property value="" name="choice.expression"/>
+                        <property-collection name="choice.attributes"/>
+                    </property-collection>
+                    <property-collection name="fc477a4e-0c55-4189-a3d7-1429c02663b0">
+                        <property value="#[message.inboundProperties['originalFilename'].endsWith('.txt')]" name="choice.expression"/>
+                        <property-collection name="choice.attributes">
+                            <property value="#[message.inboundProperties['originalFilename'].endsWith('.txt')]" name="expression"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="1fe80980-83ea-4c3f-9d70-398638ad2cd7">
+                        <property value="#[message.inboundProperties['originalFilename'].endsWith('.zip')]" name="choice.expression"/>
+                        <property-collection name="choice.attributes">
+                            <property value="#[message.inboundProperties['originalFilename'].endsWith('.zip')]" name="expression"/>
+                        </property-collection>
+                    </property-collection>
+                </properties>
+                <description></description>
+                <pattern type="org.mule.tooling.ui.modules.core.pattern.cbr" name="Choice" entity-id="Choice#2">
+                    <properties>
+                        <property name="updated"/>
+                        <property value="3" name=";INDEX"/>
+                        <property-collection name="4f8e1f08-ffff-4e05-b593-78fe53170599">
+                            <property value="#[message.inboundProperties['originalFilename'].endsWith('.pptx')]" name="choice.expression"/>
+                            <property-collection name="choice.attributes">
+<property value="#[message.inboundProperties['originalFilename'].endsWith('.ppt')]" name="expression"/>
+                            </property-collection>
+                        </property-collection>
+                        <property-collection name="b772481a-76a5-4b46-b83e-998aeeb6da76">
+                            <property value="true" name="choice.otherwise"/>
+                            <property value="" name="choice.expression"/>
+                            <property-collection name="choice.attributes"/>
+                        </property-collection>
+                        <property-collection name="fc477a4e-0c55-4189-a3d7-1429c02663b0">
+                            <property value="#[message.inboundProperties['originalFilename'].endsWith('.txt')]" name="choice.expression"/>
+                            <property-collection name="choice.attributes">
+<property value="#[message.inboundProperties['originalFilename'].endsWith('.txt')]" name="expression"/>
+                            </property-collection>
+                        </property-collection>
+                        <property-collection name="1fe80980-83ea-4c3f-9d70-398638ad2cd7">
+                            <property value="#[message.inboundProperties['originalFilename'].endsWith('.zip')]" name="choice.expression"/>
+                            <property-collection name="choice.attributes">
+<property value="#[message.inboundProperties['originalFilename'].endsWith('.zip')]" name="expression"/>
+                            </property-collection>
+                        </property-collection>
+                    </properties>
+                    <description></description>
+                </pattern>
+                <compartment entity-id="compartment#1">
+                    <lane isChoiceOtherwiseLane="false" index="11" hadOnlyOneElement="false" entity-id="1fe80980-83ea-4c3f-9d70-398638ad2cd7">
+                        <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="OnlyZIP File" entity-id="File#4">
+                            <properties>
+<property value="one-way" name="exchange-pattern"/>
+<property value="C:\Documents and Settings\azazdesai\Desktop\Output\ZIP" name="path"/>
+<property name="outputPattern"/>
+<property name="moveToPattern"/>
+<property name="moveToDirectory"/>
+<property value="12" name="auxiliary;index"/>
+<property name="pollingFrequency"/>
+<property name="fileAge"/>
+<property value="12" name="auxiliary;index"/>
+<property value="12" name="auxiliary;index"/>
+<property value="12" name="auxiliary;index"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property value="12" name="auxiliary;index"/>
+<property name="address"/>
+<property value="10000" name="responseTimeout"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType"/>
+<property value="12" name="auxiliary;index"/>
+<property name="comparator"/>
+<property name="reverseOrder"/>
+<property value="12" name="auxiliary;index"/>
+<property value="12" name="auxiliary;index"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property value="12" name="auxiliary;index"/>
+<property value="12" name="auxiliary;index"/>
+<property value="12" name="auxiliary;index"/>
+                            </properties>
+                        </endpoint>
+                    </lane>
+                    <lane isChoiceOtherwiseLane="true" index="14" hadOnlyOneElement="false" entity-id="b772481a-76a5-4b46-b83e-998aeeb6da76">
+                        <pattern type="http://www.mulesoft.org/schema/mule/core/logger" name="Logger" entity-id="Logger#1">
+                            <properties>
+<property value="Invalid File Type" name="message"/>
+<property value="INFO" name="level"/>
+<property name="category"/>
+<property value="15" name="auxiliary;index"/>
+<property value="15" name="auxiliary;index"/>
+<property value="15" name="auxiliary;index"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane isChoiceOtherwiseLane="false" index="8" hadOnlyOneElement="false" entity-id="fc477a4e-0c55-4189-a3d7-1429c02663b0">
+                        <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="Only Text File" entity-id="File#3">
+                            <properties>
+<property value="one-way" name="exchange-pattern"/>
+<property value="C:\Documents and Settings\azazdesai\Desktop\Output\Text" name="path"/>
+<property name="outputPattern"/>
+<property name="moveToPattern"/>
+<property name="moveToDirectory"/>
+<property value="9" name="auxiliary;index"/>
+<property name="pollingFrequency"/>
+<property name="fileAge"/>
+<property value="9" name="auxiliary;index"/>
+<property value="9" name="auxiliary;index"/>
+<property value="9" name="auxiliary;index"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property value="9" name="auxiliary;index"/>
+<property name="address"/>
+<property value="10000" name="responseTimeout"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType"/>
+<property value="9" name="auxiliary;index"/>
+<property name="comparator"/>
+<property name="reverseOrder"/>
+<property value="9" name="auxiliary;index"/>
+<property value="9" name="auxiliary;index"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property value="9" name="auxiliary;index"/>
+<property value="9" name="auxiliary;index"/>
+<property value="9" name="auxiliary;index"/>
+                            </properties>
+                        </endpoint>
+                    </lane>
+                    <lane isChoiceOtherwiseLane="false" index="5" hadOnlyOneElement="false" entity-id="4f8e1f08-ffff-4e05-b593-78fe53170599">
+                        <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/file/endpoint" name="Only PPT File" entity-id="File#2">
+                            <properties>
+<property value="one-way" name="exchange-pattern"/>
+<property value="C:\Documents and Settings\azazdesai\Desktop\Output\PPT" name="path"/>
+<property name="outputPattern"/>
+<property name="moveToPattern"/>
+<property name="moveToDirectory"/>
+<property value="6" name="auxiliary;index"/>
+<property name="pollingFrequency"/>
+<property name="fileAge"/>
+<property value="6" name="auxiliary;index"/>
+<property value="6" name="auxiliary;index"/>
+<property value="6" name="auxiliary;index"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property value="6" name="auxiliary;index"/>
+<property name="address"/>
+<property value="10000" name="responseTimeout"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType"/>
+<property value="6" name="auxiliary;index"/>
+<property name="comparator"/>
+<property name="reverseOrder"/>
+<property value="6" name="auxiliary;index"/>
+<property value="6" name="auxiliary;index"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property value="6" name="auxiliary;index"/>
+<property value="6" name="auxiliary;index"/>
+<property value="6" name="auxiliary;index"/>
+                            </properties>
+                        </endpoint>
+                    </lane>
+                </compartment>
+            </splitter>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>
